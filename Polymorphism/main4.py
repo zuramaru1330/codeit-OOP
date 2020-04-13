@@ -87,20 +87,41 @@ class SportsCar(Vehicle):
 class DrivingSimulator:
     def __init__(self):
         """교통 수단 인스턴스들을 담을 리스트를 변수로 갖는다"""
+        self.vehicles = []
 
     def add_vehicle(self, new_vehicle):
         """교통 수단 인스턴스들만 시뮬레이터에 추가될 수 있게 한다"""
+        if isinstance(new_vehicle, Vehicle):
+            self.vehicles.append(new_vehicle)
+        else:
+            print("{}은 교통 수단이 아니기 때문에 추가할 수 없습니다.".format(new_vehicle))
+
 
     def start_all_vehicles(self):
         """모든 교통 수단을 주행 시작시킨다"""
+        print("모든 교통 수단을 주행 시작시킵니다!\n")
+
+        for vehicle in self.vehicles:
+            vehicle.start()
 
     def stop_all_vehicles(self):
         """모든 교통 수단을 주행 정지시킨다"""
-        print("모든 교통 수단을 주행 정지시킵니다!")
+        print("모든 교통 수단을 주행 정지시킵니다!\n")
+
+        for vehicle in self.vehicles:
+            vehicle.stop()     ## Can be translated as each instance .stop --> a.k.a) bicycle.stop / bus.stop ....
 
 
     def __str__(self):
         """갖고 있는 교통 수단들의 현재 속도를 문자열로 리턴한다"""
+
+        """갖고 있는 교통 수단들의 현재 속도를 문자열로 리턴한다"""
+        res_str = ""
+
+        for vehicle in self.vehicles:
+            res_str += str(vehicle) + "\n"
+
+        return res_str
 
 
 # 자전거 인스턴스
